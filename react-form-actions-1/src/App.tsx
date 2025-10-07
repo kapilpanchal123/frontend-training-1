@@ -1,4 +1,4 @@
-import { useActionState } from 'react';
+import { useActionState, useOptimistic } from 'react';
 import './App.css';
 
 type FormDataObject = {
@@ -12,7 +12,7 @@ function App() {
     const userName = String(formData.get("username") || previousState.name);
     const data: FormDataObject = {
       name: userName,
-      counter: previousState.counter + 1,
+      counter: previousState.counter > 10 ? 10 : previousState.counter + 1,
     }
 
     console.log("⏳ Simulating slow network...");
@@ -30,15 +30,24 @@ function App() {
     counter: 0,
   });
 
-  // const submitFormActionHandler = async(formData: FormData) => {
-  //   console.log("Form Submitted: ", formData.get("username"));
-  // };
+  const [optimisticState, addOptimisticUpdate] = useOptimistic(state, (currentState, formData: FormData) => {
+    const username = String(formData.get("username") || currentState.name);
+    return {
+      name: username,
+      counter: currentState.counter > 10 ? 10 : currentState.counter + 1,
+    };
+  });
+
+  const handleAction = async(formData: FormData) => {
+    addOptimisticUpdate(formData);
+    await action(formData);
+  };
 
   return (
     <>
-      <form action={action}>
+      <form action={handleAction}>
         <input name='username' placeholder='Enter Username'/>
-        <p>{state.name ? `${state.name}: ${state.counter}` : 'Enter a username to Start'}</p>
+        <p>{optimisticState.name ? `${optimisticState.name}: ${optimisticState.counter}` : 'Enter a username to Start'}</p>
         <button type='submit' disabled={isPending}>{isPending ? "Submitting" : "Submit"}</button>
       </form>
     </>
