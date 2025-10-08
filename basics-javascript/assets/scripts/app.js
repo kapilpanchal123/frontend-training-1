@@ -138,22 +138,31 @@
 // const list = document.querySelector("ul");
 // list.remove();
 
-function handleTimeout () {
-  console.log("Timed Out!");
+// function handleTimeout () {
+//   console.log("Timed Out!");
+// }
+
+// const handleTimeout2 = () => {
+//   console.log("Timed Out2!");
+// }
+
+// setTimeout(handleTimeout, 2000);
+// setTimeout(handleTimeout2, 3000);
+// setTimeout(() => {
+//   console.log("Timed Out Anonymous Function");
+// }, 4000);
+
+// function greeter(greetFn) {
+//   greetFn();
+// }
+
+// greeter(() => console.log("Hello"));
+
+function init() {
+  function greet() {
+    console.log("Hello World - Greet");
+  }
+  greet();
 }
 
-const handleTimeout2 = () => {
-  console.log("Timed Out2!");
-}
-
-setTimeout(handleTimeout, 2000);
-setTimeout(handleTimeout2, 3000);
-setTimeout(() => {
-  console.log("Timed Out Anonymous Function");
-}, 4000);
-
-function greeter(greetFn) {
-  greetFn();
-}
-
-greeter(() => console.log("Hello"));
+init();
