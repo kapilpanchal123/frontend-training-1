@@ -91,3 +91,11 @@ const [firstname, lastname] = ["firstname", "lastname"];
 
 console.log(firstname);
 console.log(lastname);
+
+const {name, age} = {
+  name: "firstname lastname",
+  age: 10,
+}
+
+console.log(name);
+console.log(age);
