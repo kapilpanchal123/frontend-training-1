@@ -1,10 +1,15 @@
 import './App.css';
+import Header from './components/Header';
 
 function App() {
-
   return (
     <>
-      <h1>01 Starting Project</h1>
+      <div>
+        <Header />
+        <main>
+          <h2>Time to get started!</h2>
+        </main>
+      </div>
     </>
   )
 }
