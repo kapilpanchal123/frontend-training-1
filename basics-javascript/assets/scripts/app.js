@@ -37,8 +37,28 @@
 // console.log(results2)
 
 const user = {
-  user: "usernameObject",
-  message: "hello from user message object"
+  name: "usernameObject",
+  message: "hello from user message object",
+  greet() {
+    console.log("Hello from greet");
+    console.log(this.name);
+  }
 };
 
 console.log(user);
+console.log(user.name);
+console.log(user.greet());
+
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log("Hello from class");
+  }
+}
+
+const user1 = new User("username1", 10);
+console.log(user1);
