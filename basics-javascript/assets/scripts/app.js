@@ -133,3 +133,7 @@
 // for(const hobby of hobbies) {
 //   console.log(hobby);
 // }
+
+
+// const list = document.querySelector("ul");
+// list.remove();
