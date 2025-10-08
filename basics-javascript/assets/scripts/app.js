@@ -1,6 +1,5 @@
 // import { apiKey } from "./util.js";
 // import apiKey from "./util.js";
-
 // import * as util from "./util.js";
 
 // console.log(util.apiKey1);
@@ -36,29 +35,53 @@
 // const results2 = createGreeting("username2");
 // console.log(results2)
 
-const user = {
-  name: "usernameObject",
-  message: "hello from user message object",
-  greet() {
-    console.log("Hello from greet");
-    console.log(this.name);
-  }
-};
+// const user = {
+//   name: "usernameObject",
+//   message: "hello from user message object",
+//   greet() {
+//     console.log("Hello from greet");
+//     console.log(this.name);
+//   }
+// };
 
-console.log(user);
-console.log(user.name);
-console.log(user.greet());
+// console.log(user);
+// console.log(user.name);
+// console.log(user.greet());
 
-class User {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
+// class User {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
 
-  greet() {
-    console.log("Hello from class");
-  }
-}
+//   greet() {
+//     console.log("Hello from class");
+//   }
+// }
 
-const user1 = new User("username1", 10);
-console.log(user1);
+// const user1 = new User("username1", 10);
+// console.log(user1);
+
+const hobbies = ["Sports", "Cooking", "Reading"];
+console.log(hobbies[0]);
+
+hobbies.push("Working");
+
+const index = hobbies.findIndex((item) => {
+  return item === "Sports";
+});
+
+console.log(index);
+
+const newHobbies = hobbies.map((item, index) => {
+  return (item + "!");
+});
+console.log(newHobbies);
+
+const newHobbiesObject = hobbies.map((item, index) => {
+  return ({
+    index: index,
+    text: item,
+  });
+});
+console.log(newHobbiesObject);
