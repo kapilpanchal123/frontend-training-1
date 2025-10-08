@@ -100,20 +100,36 @@
 // console.log(name);
 // console.log(age);
 
+// const hobbies = ["Sports", "Cooking", "Reading"];
+// const newHobbies = ["Working"];
+
+// const mergedHobbies = [...hobbies, ...newHobbies];
+// console.log(mergedHobbies);
+
+// const user = {
+//   name: "usernameObject",
+//   message: "hello from user message object",
+// };
+
+// const extendedUser = {
+//   isAdmin: true,
+//   ...user
+// }
+
+// console.log(extendedUser);
+
+// const password = prompt("Your Password");
+
+// if(password === "Hello") {
+//   console.log("Hello Works");
+// } else if (password === "hello") {
+//   console.log("hello works");
+// } else {
+//   console.log("Access Not Granted!");
+// }
+
 const hobbies = ["Sports", "Cooking", "Reading"];
-const newHobbies = ["Working"];
 
-const mergedHobbies = [...hobbies, ...newHobbies];
-console.log(mergedHobbies);
-
-const user = {
-  name: "usernameObject",
-  message: "hello from user message object",
-};
-
-const extendedUser = {
-  isAdmin: true,
-  ...user
+for(const hobby of hobbies) {
+  console.log(hobby);
 }
-
-console.log(extendedUser);
