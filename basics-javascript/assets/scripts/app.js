@@ -1,7 +1,7 @@
 // import { apiKey } from "./util.js";
 // import apiKey from "./util.js";
 
-import * as util from "./util.js";
+// import * as util from "./util.js";
 
 // console.log(util.apiKey1);
 // console.log(util.apiKey2);
@@ -27,11 +27,18 @@ import * as util from "./util.js";
 //   return "Hi, " + userName + " " + message;
 // }
 
-const createGreeting = (userName, message = "default message") => {
-  return "Hi, " + userName + " " + message;
-}
+// const createGreeting = (userName, message = "default message") => {
+//   return "Hi, " + userName + " " + message;
+// }
 
-const results1 = createGreeting("username1", "how are you?");
-console.log(results1);
-const results2 = createGreeting("username2");
-console.log(results2)
+// const results1 = createGreeting("username1", "how are you?");
+// console.log(results1);
+// const results2 = createGreeting("username2");
+// console.log(results2)
+
+const user = {
+  user: "usernameObject",
+  message: "hello from user message object"
+};
+
+console.log(user);
