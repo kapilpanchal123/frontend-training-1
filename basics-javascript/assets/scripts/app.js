@@ -128,8 +128,8 @@
 //   console.log("Access Not Granted!");
 // }
 
-const hobbies = ["Sports", "Cooking", "Reading"];
+// const hobbies = ["Sports", "Cooking", "Reading"];
 
-for(const hobby of hobbies) {
-  console.log(hobby);
-}
+// for(const hobby of hobbies) {
+//   console.log(hobby);
+// }
