@@ -1,4 +1,4 @@
-import React from 'react';
+import "./CoreConcepts.css";
 
 type Props = {
   title: string,

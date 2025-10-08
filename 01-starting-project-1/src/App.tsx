@@ -1,6 +1,6 @@
 import './App.css';
-import CoreConcepts from './components/CoreConcepts';
-import Header from './components/Header';
+import CoreConcepts from './components/CoreConcepts/CoreConcepts';
+import Header from './components/Header/Header';
 import { CORE_CONCEPTS } from './components/data/data';
 
 function App() {
