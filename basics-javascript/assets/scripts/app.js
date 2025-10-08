@@ -87,15 +87,33 @@
 // console.log(newHobbiesObject);
 
 
-const [firstname, lastname] = ["firstname", "lastname"];
+// const [firstname, lastname] = ["firstname", "lastname"];
 
-console.log(firstname);
-console.log(lastname);
+// console.log(firstname);
+// console.log(lastname);
 
-const {name, age} = {
-  name: "firstname lastname",
-  age: 10,
+// const {name, age} = {
+//   name: "firstname lastname",
+//   age: 10,
+// }
+
+// console.log(name);
+// console.log(age);
+
+const hobbies = ["Sports", "Cooking", "Reading"];
+const newHobbies = ["Working"];
+
+const mergedHobbies = [...hobbies, ...newHobbies];
+console.log(mergedHobbies);
+
+const user = {
+  name: "usernameObject",
+  message: "hello from user message object",
+};
+
+const extendedUser = {
+  isAdmin: true,
+  ...user
 }
 
-console.log(name);
-console.log(age);
+console.log(extendedUser);
