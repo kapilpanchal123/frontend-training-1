@@ -55,19 +55,17 @@ const derivedWinner = (gameBoard:GameBoard, players: Record<Exclude<PlayerSymbol
 
 function App() {
   const[players, setPlayers] = useState(PLAYERS);
-
   const[gameTurns, setGameTurns] = useState<Turn[]>([]);
   const activePlayer = deriveActivePlayer(gameTurns);
   const gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
+  const winner = derivedWinner(gameBoard, players);
+  const isDraw = gameTurns.length === 9 && !winner;
 
   for(const turn of gameTurns) {
     const { square, player } = turn;
     const { row, col } = square;
     gameBoard[row][col] = player;
   }
-
-  const winner = derivedWinner(gameBoard, players);
-  const isDraw = gameTurns.length === 9 && !winner;
 
   const handleSelectSquare = (rowIndex: number, colIndex: number) => {
     setGameTurns((prevTurns) => {
