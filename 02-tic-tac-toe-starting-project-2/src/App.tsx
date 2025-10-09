@@ -11,18 +11,30 @@ type Turn = {
   player: PlayerSymbol;
 };
 
+const deriveActivePlayer = (gameTurns: Turn[]) => {
+  let currentPlayer: PlayerSymbol = "X";
+
+  if(gameTurns?.length > 0 && gameTurns[0].player === "X") {
+    currentPlayer = "O";
+  }
+  return currentPlayer;
+};
+
 function App() {
-  const[activePlayer, setActivePlayer] = useState<PlayerSymbol>("X");
+  // const[activePlayer, setActivePlayer] = useState<PlayerSymbol>("X");
   const[gameTurns, setGameTurns] = useState<Turn[]>([]);
+  const activePlayer = deriveActivePlayer(gameTurns);
 
   const handleSelectSquare = (rowIndex: number, colIndex: number) => {
-    setActivePlayer((curActivePlayer) => curActivePlayer === "X" ? "O" : "X");
+    // setActivePlayer((curActivePlayer) => curActivePlayer === "X" ? "O" : "X");
     setGameTurns((prevTurns) => {
-      let currentPlayer: PlayerSymbol = "X";
+      // let currentPlayer: PlayerSymbol = "X";
 
-      if(prevTurns?.length > 0 && prevTurns[0].player === "X") {
-        currentPlayer = "O";
-      }
+      // if(prevTurns?.length > 0 && prevTurns[0].player === "X") {
+      //   currentPlayer = "O";
+      // }
+
+      const currentPlayer = deriveActivePlayer(prevTurns);
 
       const updatedTurns = [{ square: {
         row: rowIndex,
@@ -45,7 +57,7 @@ function App() {
           <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns}/>
         </div>
       </main>
-      <Log />
+      <Log turns={gameTurns}/>
     </>
   )
 }
