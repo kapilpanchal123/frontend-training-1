@@ -27,13 +27,15 @@ const deriveActivePlayer = (gameTurns: Turn[]) => {
   return currentPlayer;
 };
 
-let winner: string | null = null;
+
 
 function App() {
   const[players, setPlayers] = useState({
     X: "Player 1",
     O: "Player 2"
   });
+
+  let winner: string | null = null;
 
   const[gameTurns, setGameTurns] = useState<Turn[]>([]);
   const activePlayer = deriveActivePlayer(gameTurns);
