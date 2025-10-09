@@ -1,11 +1,12 @@
-import { useState, type KeyboardEvent } from 'react'
+import { useState } from 'react'
 
 type Props = {
   name: string,
   symbol: string,
+  isActive: boolean,
 }
 
-const Player = ({name, symbol}: Props) => {
+const Player = ({name, symbol, isActive}: Props) => {
   const [playerName, setPlayerName] = useState<string>(name);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -19,7 +20,7 @@ const Player = ({name, symbol}: Props) => {
 
   return (
     <>
-      <li>
+      <li className={isActive ? "active" : undefined}>
         <span className="player">
           {isEditing ?
             <input type='text' onChange={handleChange} value={playerName} required/> : 
