@@ -13,6 +13,16 @@ type Turn = {
   player: PlayerSymbol;
 };
 
+type PlayerName = {
+  X: string;
+  O: string;
+}
+
+const PLAYERS: PlayerName = {
+  X: "Player 1",
+  O: "Player 2",
+}
+
 const INITIAL_GAME_BOARD: GameBoard = [
   [null, null, null],
   [null, null, null],
@@ -44,10 +54,7 @@ const derivedWinner = (gameBoard:GameBoard, players: Record<Exclude<PlayerSymbol
 };
 
 function App() {
-  const[players, setPlayers] = useState({
-    X: "Player 1",
-    O: "Player 2"
-  });
+  const[players, setPlayers] = useState(PLAYERS);
 
   const[gameTurns, setGameTurns] = useState<Turn[]>([]);
   const activePlayer = deriveActivePlayer(gameTurns);
@@ -93,15 +100,15 @@ function App() {
       <main>
         <div id="game-container">
           <ol id="players" className="highlight-player">
-            <Player 
-              name="Player 1" 
-              isActive={activePlayer === "X"} 
+            <Player
+              name={PLAYERS.X}
+              isActive={activePlayer === "X"}
               symbol="X"
               onChangeName={handlePlayerNameChange}/>
-            <Player 
-              name="Player 2" 
-              isActive={activePlayer === "O"} 
-              symbol="O" 
+            <Player
+              name={PLAYERS.O}
+              isActive={activePlayer === "O"}
+              symbol="O"
               onChangeName={handlePlayerNameChange}/>
           </ol>
           {(winner || isDraw) && <GameOver onRestart={handleRestart} winner={winner}/>}
@@ -111,6 +118,6 @@ function App() {
       <Log turns={gameTurns}/>
     </>
   )
-}
+};
 
 export default App;
