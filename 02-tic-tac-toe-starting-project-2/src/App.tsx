@@ -11,6 +11,8 @@ type Turn = {
   player: PlayerSymbol;
 };
 
+const WINNING_COMBINATIONS = ;
+
 const deriveActivePlayer = (gameTurns: Turn[]) => {
   let currentPlayer: PlayerSymbol = "X";
 
@@ -21,21 +23,12 @@ const deriveActivePlayer = (gameTurns: Turn[]) => {
 };
 
 function App() {
-  // const[activePlayer, setActivePlayer] = useState<PlayerSymbol>("X");
   const[gameTurns, setGameTurns] = useState<Turn[]>([]);
   const activePlayer = deriveActivePlayer(gameTurns);
 
   const handleSelectSquare = (rowIndex: number, colIndex: number) => {
-    // setActivePlayer((curActivePlayer) => curActivePlayer === "X" ? "O" : "X");
     setGameTurns((prevTurns) => {
-      // let currentPlayer: PlayerSymbol = "X";
-
-      // if(prevTurns?.length > 0 && prevTurns[0].player === "X") {
-      //   currentPlayer = "O";
-      // }
-
       const currentPlayer = deriveActivePlayer(prevTurns);
-
       const updatedTurns = [{ square: {
         row: rowIndex,
         col: colIndex

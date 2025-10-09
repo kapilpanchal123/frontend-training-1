@@ -1,11 +1,10 @@
-import React from 'react';
-
 type PlayerSymbol = "X" | "O" | null;
 
 type Turn = {
   square: { row: number; col: number };
   player: PlayerSymbol;
 };
+
 type Props = {
   turns: Turn[]
 }
