@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, type KeyboardEvent } from 'react'
 
 type Props = {
   name: string,
@@ -6,14 +6,28 @@ type Props = {
 }
 
 const Player = ({name, symbol}: Props) => {
+  const [playerName, setPlayerName] = useState<string>(name);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const handleEditClick = () => {
+    setIsEditing((editing) => !editing);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPlayerName(event.target.value);
+  };
+
   return (
     <>
       <li>
         <span className="player">
-          <span className="player-name">{name}</span>
+          {isEditing ?
+            <input type='text' onChange={handleChange} value={playerName} required/> : 
+            <span className="player-name">{playerName}</span>
+          }
           <span className="player-symbol">{symbol}</span>
         </span>
-        <button>Edit</button>
+        <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
       </li>
     </>
   )
