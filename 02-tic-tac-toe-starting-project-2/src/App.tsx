@@ -27,8 +27,6 @@ const deriveActivePlayer = (gameTurns: Turn[]) => {
   return currentPlayer;
 };
 
-
-
 function App() {
   const[players, setPlayers] = useState({
     X: "Player 1",
