@@ -1,10 +1,15 @@
 import './App.css';
+import AuthInputs from './components/AuthInputs/AuthInputs';
+import Header from './components/Header/Header';
 
 function App() {
 
   return (
     <>
-      <h1> Styling React Projects</h1>
+      <Header />
+        <main>
+          <AuthInputs />
+        </main>
     </>
   )
 }
