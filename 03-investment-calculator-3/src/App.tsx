@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/Header/Header';
 import UserInput from './components/UserInput/UserInput';
 import type { InvestmentInput } from './data/data';
-import { calculateInvestmentResults } from './util/investment';
 import Result from './components/Result/Result';
 
 const initialInvestment: InvestmentInput = {
@@ -15,7 +14,8 @@ const initialInvestment: InvestmentInput = {
 
 function App() {
   const[investment, setInvestment] = useState<InvestmentInput>(initialInvestment);
-  const getInvestments = calculateInvestmentResults(investment);
+
+  const inputIsValid = (investment.duration >= 1);
 
   const handleInvestment = (val: number, inputVal: keyof InvestmentInput) => {
     setInvestment((prevValue) => ({
@@ -30,7 +30,8 @@ function App() {
       <div>
         <Header />
         <UserInput actualInvestment={investment} investment={handleInvestment}/>
-        <Result postInvestments={getInvestments}/>
+        {!inputIsValid && <p className="center">Please enter a duration greater than zero.</p>}
+        {inputIsValid && <Result postInvestments={investment}/>}
       </div>
     </>
   )

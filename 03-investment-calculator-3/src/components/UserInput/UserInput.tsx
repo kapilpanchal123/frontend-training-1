@@ -14,37 +14,41 @@ const UserInput = ({investment, actualInvestment}: Props) => {
   return (
     <>
       <section id="user-input">
-        <div id="user-input">
-          <div id="input-group">
+        <div id="input-group">
+          <p>
             <label htmlFor="initial-investment">Initial Investment</label>
             <input id="initial-investment" 
               name="initialInvestment" 
               onChange={(event) => handleUserInput(event, "initialInvestment")} 
               type='number'
               value={actualInvestment.initialInvestment}/>
+          </p>
+          <p>
             <label htmlFor="annual-investment">Annual Investment</label>
             <input id="annual-investment" 
               name="annualInvestment" 
               onChange={(event) => handleUserInput(event, "annualInvestment")} 
               type='number'
               value={actualInvestment.annualInvestment}/>
-          </div>
+          </p>
         </div>
-        <div id="user-input">
-          <div id="input-group">
+        <div id="input-group">
+          <p>
             <label htmlFor="expected-return">Expected Return</label>
             <input id="expected-return" 
               name="expectedReturn" 
               onChange={(event) => handleUserInput(event, "expectedReturn")} 
               type='number'
               value={actualInvestment.expectedReturn}/>
+          </p>
+          <p>
             <label htmlFor="duration">Duration</label>
             <input id="duration" 
               name="duration" 
               onChange={(event) => handleUserInput(event, "duration")} 
               type='number'
               value={actualInvestment.duration}/>
-          </div>
+          </p>
         </div>
       </section>
     </>
