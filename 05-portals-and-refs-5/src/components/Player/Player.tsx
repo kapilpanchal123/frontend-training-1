@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 type Props = {}
 
 const Player = (props: Props) => {
-  const [playerName, setPlayerName] = useState<string>("");
-  const [isPlayer, setIsPlayer] = useState<boolean>(false);
 
-  const handlePlayerInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerName(event.target.value);
-  };
+  const playerNameRef = useRef<HTMLInputElement | null>(null);
+  const [playerName, setPlayerName] = useState<string>("Unknown Entity");
+  // const [isPlayer, setIsPlayer] = useState<boolean>(false);
+
+  // const handlePlayerInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setIsPlayer(false);
+  //   setPlayerName(event.target.value);
+  //   // playerNameRef.current?.value;
+  // };
 
    const handlePlayerInputValueClicked = () => {
-    setIsPlayer(true);
+    setPlayerName(playerNameRef.current!.value);
+    
   };
 
   return (
     <section id="player">
-      <h2>Welcome, {isPlayer ? playerName : "unknown entity"}</h2>
+      <h2>Welcome, {playerName ?? "unknown entity"}</h2>
       <p>
-        <input type="text" onChange={(event) => handlePlayerInputValueChange(event)}/>
+        <input ref={playerNameRef} type="text"/>
         <button onClick={handlePlayerInputValueClicked}>Set Name</button>
       </p>
     </section>
