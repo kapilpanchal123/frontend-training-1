@@ -7,7 +7,7 @@ type Props = {
   description: string;
   onDelete: () => void;
   onAddTask: (text: string) => void;
-  onDeleteTask: () => void;
+  onDeleteTask: (id: number | undefined) => void;
   tasks: Task[];
 };
 

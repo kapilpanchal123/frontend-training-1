@@ -28,6 +28,6 @@ const NewTasks = ({ onAdd }: Props) => {
       </div>
     </>
   )
-}
+};
 
 export default NewTasks;

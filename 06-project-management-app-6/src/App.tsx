@@ -28,8 +28,14 @@ function App() {
     });
   };
 
-  const handleDeleteTask = () => {
-
+  const handleDeleteTask = (id: number | undefined) => {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: null,
+        tasks: prevState.tasks.filter((task) => task.id !== id)
+      }
+    });
   };
 
   const handleSelectProject = (id: string) => {
