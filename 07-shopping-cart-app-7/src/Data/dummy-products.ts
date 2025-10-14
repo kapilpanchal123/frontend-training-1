@@ -4,8 +4,9 @@ import rainJacket from '../assets/rain-jacket.jpg';
 import merlotSuit from '../assets/merlot-suit.jpg';
 import moonlightDress from '../assets/moonlight-dress.jpg';
 import denimPioneer from '../assets/denim-pioneer.jpg';
+import type { ProductDataType } from './Data';
 
-export const DUMMY_PRODUCTS = [
+export const DUMMY_PRODUCTS: ProductDataType[] = [
   {
     id: 'p1',
     image: mochaOvercoat,
