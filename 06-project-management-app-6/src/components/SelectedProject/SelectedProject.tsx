@@ -9,6 +9,7 @@ type Props = {
   onAddTask: (text: string) => void;
   onDeleteTask: (id: number | undefined) => void;
   tasks: Task[];
+  selectedProjectId: string | null | undefined;
 };
 
 const SelectedProject = ({ title, date, description, onDelete, onAddTask, onDeleteTask, tasks }: Props) => {

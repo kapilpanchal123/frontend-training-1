@@ -23,7 +23,7 @@ const ProjectsSidebar = ({ onStartAddProject, projects, onSelectProject, selecte
             {JSON.stringify(project)}
             let cssClasses = "w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800 ";
             
-            if(project.id === selectedProjectId) {
+            if(project.id?.toString() === selectedProjectId) {
               cssClasses += "bg-stone-800 text-stone-200";
             } else {
               cssClasses += "text-stone-400";

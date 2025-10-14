@@ -96,7 +96,9 @@ function App() {
                   onDelete={handleDeleteProject} 
                   onAddTask={handleAddTask}
                   onDeleteTask={handleDeleteTask}
-                  tasks={projectsState.tasks}/>;
+                  tasks={projectsState.tasks}
+                  selectedProjectId={projectsState.selectedProjectId}
+                  />;
 
   if (projectsState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject}/>
@@ -111,7 +113,7 @@ function App() {
           projects={ projectsState.projects } 
           onStartAddProject={ handleStartAddProject }
           onSelectProject={ handleSelectProject }
-          selectedProjectId={ projectsState.selectedProjectId }/>
+          selectedProjectId={ projectsState.selectedProjectId } />
         { content }
       </main>
     </>
