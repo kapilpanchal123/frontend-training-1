@@ -10,7 +10,27 @@ function App() {
   const[projectsState, setProjectsState] = useState<ProjectType>({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  const handleAddTask = (text: string) => {
+     setProjectsState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+      return {
+            ...prevState,
+            tasks: [ newTask, ...prevState.tasks ]
+          }
+    });
+  };
+
+  const handleDeleteTask = () => {
+
+  };
 
   const handleSelectProject = (id: string) => {
     setProjectsState((prevState) => {
@@ -63,11 +83,17 @@ function App() {
     });
   };
 
-  const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
+  const selectedProject = projectsState.projects.find(project => project.id?.toString() === projectsState.selectedProjectId);
+  let content = <SelectedProject 
+                  title={selectedProject?.title ?? ""} 
+                  date={selectedProject?.dueDate ?? ""} 
+                  description={selectedProject?.description ?? ""} 
+                  onDelete={handleDeleteProject} 
+                  onAddTask={handleAddTask}
+                  onDeleteTask={handleDeleteTask}
+                  tasks={projectsState.tasks}/>;
 
-  let content = <SelectedProject title={selectedProject?.title ?? ""} date={selectedProject?.dueDate ?? ""} description={selectedProject?.description ?? ""} onDelete={handleDeleteProject}/>;
-
-  if(projectsState.selectedProjectId === null) {
+  if (projectsState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject}/>
   } else if(projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={ handleStartAddProject }/>
@@ -77,10 +103,10 @@ function App() {
     <>
       <main className="h-screen my-8 flex gap-8">
         <ProjectsSidebar 
-          projects={projectsState.projects} 
+          projects={ projectsState.projects } 
           onStartAddProject={ handleStartAddProject }
           onSelectProject={ handleSelectProject }
-          selectedProjectId={projectsState.selectedProjectId}/>
+          selectedProjectId={ projectsState.selectedProjectId }/>
         { content }
       </main>
     </>

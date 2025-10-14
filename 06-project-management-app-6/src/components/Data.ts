@@ -1,6 +1,7 @@
 export type ProjectType = {
   selectedProjectId: string | undefined | null;
   projects: ProjectData[];
+  tasks: Task[];
 };
 
 export type ProjectData = {
@@ -8,6 +9,12 @@ export type ProjectData = {
   title: string;
   description: string;
   dueDate: string;
+};
+
+export type Task = {
+  id?: number;
+  text: string;
+  projectId: string | undefined | null;
 };
 
 export type ResultModalHandle = {
