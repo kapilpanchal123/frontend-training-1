@@ -4,7 +4,12 @@ export type ProjectType = {
 };
 
 export type ProjectData = {
+  id?: number;
   title: string;
   description: string;
-  dueDate: HTMLInputElement;
+  dueDate: string;
+};
+
+export type ResultModalHandle = {
+  open: () => void;
 };

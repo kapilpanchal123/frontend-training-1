@@ -1,31 +1,43 @@
 import { useRef } from 'react';
 import Input from './Input';
-import type { ProjectData } from '../Data';
+import type { ProjectData, ResultModalHandle } from '../Data';
+import Modal from '../Modal/Modal';
 
 type Props = {
   onAdd: (projectData: ProjectData) => void;
 }
 
 const NewProject = ({onAdd}: Props) => {
-
-  const title = useRef<string>("");
-  const description = useRef<string>("");
+  const modal = useRef<ResultModalHandle>(null);
+  const title = useRef<HTMLInputElement>(null);
+  const description = useRef<HTMLTextAreaElement>(null);
   const dueDate = useRef<HTMLInputElement>(null);
 
   const handleSave = () => {
-    const enteredTitle = title.current;
-    const enteredDescription = description.current;
-    const enteredDueDate = dueDate.current;
+    const enteredTitle = title.current?.value ?? "";
+    const enteredDescription = description.current?.value ?? "";
+    const enteredDueDate = dueDate.current?.value ?? "";
+
+    if(enteredTitle.trim() === "" || enteredDescription.trim() === "" || enteredDueDate.trim() === "") {
+      // show the error modal
+      modal.current?.open();
+      return;
+    }
 
     onAdd({
       title: enteredTitle,
       description: enteredDescription,
-      dueDate: enteredDueDate!,
+      dueDate: enteredDueDate,
     });
   };
 
   return (
     <>
+      <Modal ref={modal} buttonTitle="Okay"> 
+        <h2>Invalid Input</h2>
+        <p>Oops... looks like you forgot to enter a value.</p>
+        <p>Please make sure that you provide a valid value to every input field.</p>
+      </Modal>
       <div className="w-[35rem] mt-16">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
@@ -43,6 +55,6 @@ const NewProject = ({onAdd}: Props) => {
       </div>
     </>
   )
-}
+};
 
 export default NewProject;
