@@ -5,12 +5,9 @@ type Props = {
   onAdd: (text: string) => void;
   onDelete: () => void;
   tasks: Task[];
-}
+};
 
 const Tasks = ({ onAdd, onDelete, tasks }: Props) => {
-
-  console.log("Tasks: ", tasks);
-
   return (
     <>
       <section>
@@ -28,6 +25,6 @@ const Tasks = ({ onAdd, onDelete, tasks }: Props) => {
       </section>
     </>
   )
-}
+};
 
 export default Tasks;
