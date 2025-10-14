@@ -12,6 +12,10 @@ const NewTasks = ({ onAdd }: Props) => {
   };
 
   const handleClick = () => {
+    if(enteredTask === "") {
+      return;
+    }
+
     setEnteredTask("");
     onAdd(enteredTask);
   };

@@ -32,7 +32,6 @@ function App() {
     setProjectsState((prevState) => {
       return {
         ...prevState,
-        selectedProjectId: null,
         tasks: prevState.tasks.filter((task) => task.id !== id)
       }
     });
