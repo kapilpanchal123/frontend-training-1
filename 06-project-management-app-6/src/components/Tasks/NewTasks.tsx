@@ -12,7 +12,7 @@ const NewTasks = ({ onAdd }: Props) => {
   };
 
   const handleClick = () => {
-    if(enteredTask === "") {
+    if(enteredTask.trim() === "") {
       return;
     }
 
