@@ -1,15 +1,12 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import CartModal from '../CartModal/CartModal';
-import type { CartItemType, ShoppingCartType } from '../../Data/Data';
+import type { CartItemType, ShoppingCartType, ShoppingCartTypeWithFunctions } from '../../Data/Data';
+import { CartContext } from '../../store/shopping-cart-context';
 
-type Props = {
-  cart: ShoppingCartType;
-  onUpdateCartItemQuantity: (cart: CartItemType, amount: number) => void;
-}
-
-const Header = ({ cart, onUpdateCartItemQuantity }: Props) => {
+const Header = () => {
+  const { items } = useContext<ShoppingCartTypeWithFunctions>(CartContext);
   const modal = useRef<HTMLDialogElement>(null);
-  const cartQuantity = cart.items.length;
+  const cartQuantity = items.length;
 
   const handleOpenCartClick = () => {
     modal.current?.open();
@@ -30,8 +27,6 @@ const Header = ({ cart, onUpdateCartItemQuantity }: Props) => {
     <>
       <CartModal
         ref={modal}
-        cartItems={cart.items}
-        onUpdateCartItemQuantity={onUpdateCartItemQuantity}
         title="Your Cart"
         actions={modalActions}
       />
@@ -41,7 +36,7 @@ const Header = ({ cart, onUpdateCartItemQuantity }: Props) => {
           <h1>Elegant Context</h1>
         </div>
         <p>
-          <button onClick={handleOpenCartClick}>Cart ({cartQuantity})</button>
+          <button onClick={handleOpenCartClick}>Cart ({ cartQuantity })</button>
         </p>
       </header>
     </>

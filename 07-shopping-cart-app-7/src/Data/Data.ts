@@ -19,4 +19,10 @@ export type ShoppingCartType = {
 
 export type ShoppingCartTypeWithFunctions = ShoppingCartType & {
   addItemsToCart: (id: string) => void;
-}
+  updateItemQuantity: (cart: CartItemType, amount: number) => void;
+};
+
+export type ShoppingCartAction =
+  { type: 'ADD_ITEM'; payload: {id: string} }
+  | { type: 'UPDATE_ITEM'; payload: { cart: CartItemType, amount: number } }
+  | { type: 'CLEAR_CART' };

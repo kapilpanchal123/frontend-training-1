@@ -1,18 +1,10 @@
 import { useContext } from 'react';
-import type { CartItemType, ShoppingCartTypeWithFunctions } from '../../Data/Data';
+import type { ShoppingCartTypeWithFunctions } from '../../Data/Data';
 import { CartContext } from '../../store/shopping-cart-context';
 
-type Props = {
-  onUpdateItemQuantity: (cart: CartItemType, onUpdateCartItemQuantity: number) => void;
-}
-
-const Cart = ({ onUpdateItemQuantity }: Props) => {
-  const { items } = useContext<ShoppingCartTypeWithFunctions>(CartContext);
-
-  const totalPrice = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+const Cart = () => {
+  const { items, updateItemQuantity } = useContext<ShoppingCartTypeWithFunctions>(CartContext);
+  const totalPrice = items.reduce((acc, item) => acc + item.price * item.quantity,0);
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
   return (
@@ -30,11 +22,11 @@ const Cart = ({ onUpdateItemQuantity }: Props) => {
                     <span> ({formattedPrice})</span>
                   </div>
                   <div className="cart-item-actions">
-                    <button onClick={() => onUpdateItemQuantity(item, -1)}>
+                    <button onClick={() => updateItemQuantity(item, -1)}>
                       -
                     </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => onUpdateItemQuantity(item, 1)}>
+                    <button onClick={() => updateItemQuantity(item, 1)}>
                       +
                     </button>
                   </div>
