@@ -13,9 +13,8 @@ const Cart = ({ onUpdateItemQuantity }: Props) => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
-  
+
   return (
     <>
       <div id="cart">
@@ -24,7 +23,6 @@ const Cart = ({ onUpdateItemQuantity }: Props) => {
           <ul id="cart-items">
             { items.map((item) => {
               const formattedPrice = `$${item.price.toFixed(2)}`;
-
               return (
                 <li key={item.id}>
                   <div>
