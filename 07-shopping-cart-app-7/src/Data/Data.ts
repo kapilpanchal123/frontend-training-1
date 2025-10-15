@@ -16,3 +16,7 @@ export type CartItemType = {
 export type ShoppingCartType = {
   items: CartItemType[];
 };
+
+export type ShoppingCartTypeWithFunctions = ShoppingCartType & {
+  addItemsToCart: (id: string) => void;
+}
