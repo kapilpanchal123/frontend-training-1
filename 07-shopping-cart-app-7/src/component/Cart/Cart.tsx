@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import type { CartItemType, ShoppingCartType } from '../../Data/Data';
+import type { CartItemType, ShoppingCartTypeWithFunctions } from '../../Data/Data';
 import { CartContext } from '../../store/shopping-cart-context';
 
 type Props = {
@@ -7,13 +7,15 @@ type Props = {
 }
 
 const Cart = ({ onUpdateItemQuantity }: Props) => {
-  const { items } = useContext<ShoppingCartType>(CartContext);
+  const { items } = useContext<ShoppingCartTypeWithFunctions>(CartContext);
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
+  
   return (
     <>
       <div id="cart">

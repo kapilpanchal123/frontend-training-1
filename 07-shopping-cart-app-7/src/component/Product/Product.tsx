@@ -1,10 +1,12 @@
-import type { ProductDataType } from '../../Data/Data';
+import { useContext } from 'react';
+import type { ProductDataType, ShoppingCartTypeWithFunctions } from '../../Data/Data';
+import { CartContext } from '../../store/shopping-cart-context';
 
-type Props = ProductDataType & {
-  onAddToCart: (id: string) => void;
-}
+type Props = ProductDataType;
 
-const Product = ({ id, image, title, price, description, onAddToCart }: Props) => {
+const Product = ({ id, image, title, price, description }: Props) => {
+
+  const { addItemsToCart } = useContext<ShoppingCartTypeWithFunctions>(CartContext);
   return (
     <>
       <article className="product">
@@ -16,7 +18,7 @@ const Product = ({ id, image, title, price, description, onAddToCart }: Props) =
             <p>{description}</p>
           </div>
           <p className='product-actions'>
-            <button onClick={() => onAddToCart(id)}>Add to Cart</button>
+            <button onClick={() => addItemsToCart(id)}>Add to Cart</button>
           </p>
         </div>
       </article>
