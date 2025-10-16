@@ -1,23 +1,23 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import './App.css';
 import { AVAILABLE_PLACES, type AvailablePlacesObject } from './data/data';
 import Modal from './components/Modal/Modal';
 import DeleteConfirmation from './components/DeleteConfirmation/DeleteConfirmation';
 import Places from './components/Places/Places';
-import logoImg from '../public/logo.png';
+import logoImg from '/logo.png';
 
 function App() {
-  const modal = useRef<HTMLDialogElement>(null);
+  const[isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const selectedPlace = useRef<string>(null);
   const [pickedPlaces, setPickedPlaces] = useState<AvailablePlacesObject[]>([]);
 
   const handleStartRemovePlace = (id: string) => {
-    modal.current?.open();
+    setIsModalOpen(true);
     selectedPlace.current = id;
   };
 
   const handleStopRemovePlace = () => {
-    modal.current?.close();
+    setIsModalOpen(false);
   };
 
   const handleSelectPlace = (id: string) => {
@@ -35,15 +35,18 @@ function App() {
       });
     };
 
-    const handleRemovePlace = () => {
+    const handleRemovePlace = useCallback(() => {
       setPickedPlaces((prevPickedPlaces) => 
         prevPickedPlaces.filter((place) => place.id != selectedPlace.current));
-      modal.current?.close();
-    };
+      setIsModalOpen(false);
+
+      const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")!) || [];
+      localStorage.setItem("selectedPlaces", JSON.stringify(storedIds.filter((id: string) => id !== selectedPlace.current)));
+    }, []);
 
   return (
     <>
-      <Modal ref={modal}>
+      <Modal open={isModalOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}

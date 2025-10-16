@@ -1,9 +1,27 @@
+import { useEffect } from "react";
+import ProgressBar from "../ProgressBar/ProgressBar";
+
 type Props = {
   onConfirm: () => void;
   onCancel: () => void;
 }
 
+const TIMER = 3000;
+
 const DeleteConfirmation = ({onConfirm, onCancel}: Props) => {
+  
+  useEffect(() => {
+    console.log("TIMER SET");
+    const timer = setTimeout(() => {
+      onConfirm();
+    }, TIMER);
+
+    return () => {
+      console.log("TIMER CLEAR");
+      clearTimeout(timer);
+    };
+  }, [onConfirm]);
+
   return (
     <>
       <div id="delete-confirmation">
@@ -17,6 +35,7 @@ const DeleteConfirmation = ({onConfirm, onCancel}: Props) => {
             Yes
           </button>
         </div>
+        <ProgressBar TIMER={TIMER}/>
       </div>
     </>
   )
